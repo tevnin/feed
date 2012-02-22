@@ -1,0 +1,7 @@
+links to resources used
+
+ofxJSON
+https://github.com/jefftimesten/ofxJSON
+
+popcorn.js
+https://github.com/webmademovies/popcorn-js
