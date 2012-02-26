@@ -1,14 +1,14 @@
 x connect Twitter to particle code - Tami
-different images for particles - Nidhi
+x different images for particles - Nidhi
 particle flocking and exploding - Nidhi 
-Mass Relevance - pull trending topics - Hirumi
+:( Mass Relevance - pull trending topics - Hirumi
 Mass Relevance - tweet through the API
 figure out ecosystem on 4 screens
 
 Popup video twitter - Tami
 hook up midi to oF - Maya
 
-capture with kinect - Maya
+x capture with kinect - Maya
 kinect to gif code - Maya
 visuals for image capture
 export to Mozilla
