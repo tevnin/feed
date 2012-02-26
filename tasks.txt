@@ -1,4 +1,4 @@
-connect Twitter to particle code - Tami
+x connect Twitter to particle code - Tami
 different images for particles - Nidhi
 particle flocking and exploding - Nidhi 
 Mass Relevance - pull trending topics - Hirumi
