@@ -58,6 +58,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		279560B414F9AF66000BEDFF /* ofxJSON */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ofxJSON; sourceTree = "<group>"; };
 		9261314F14239FBF006BDDA6 /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testApp.h; sourceTree = "<group>"; };
 		9261315014239FBF006BDDA6 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		9261315214239FBF006BDDA6 /* testApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testApp.cpp; sourceTree = "<group>"; };
@@ -111,6 +112,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				279560B414F9AF66000BEDFF /* ofxJSON */,
 			);
 			name = addons;
 			sourceTree = "<group>";
