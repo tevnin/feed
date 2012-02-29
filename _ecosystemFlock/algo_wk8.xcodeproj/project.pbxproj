@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		031A14A914A0E66400FA3AC9 /* vectorField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 031A14A814A0E66400FA3AC9 /* vectorField.cpp */; };
+		14F9BF6714FE742400105A1A /* json_reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14F9BF5F14FE742400105A1A /* json_reader.cpp */; };
+		14F9BF6814FE742400105A1A /* json_value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14F9BF6014FE742400105A1A /* json_value.cpp */; };
+		14F9BF6914FE742400105A1A /* json_writer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14F9BF6214FE742400105A1A /* json_writer.cpp */; };
+		14F9BF6A14FE742400105A1A /* ofxJSONElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14F9BF6514FE742400105A1A /* ofxJSONElement.cpp */; };
 		9261315314239FBF006BDDA6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9261315014239FBF006BDDA6 /* main.cpp */; };
 		9261315514239FBF006BDDA6 /* testApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9261315214239FBF006BDDA6 /* testApp.cpp */; };
 		92A7ACDB1457ABC80027DEE5 /* binner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92A7ACDA1457ABC80027DEE5 /* binner.cpp */; };
@@ -62,6 +66,24 @@
 /* Begin PBXFileReference section */
 		031A14A714A0E64B00FA3AC9 /* vectorField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vectorField.h; sourceTree = "<group>"; };
 		031A14A814A0E66400FA3AC9 /* vectorField.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vectorField.cpp; sourceTree = "<group>"; };
+		14F9BF5214FE742400105A1A /* autolink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = autolink.h; sourceTree = "<group>"; };
+		14F9BF5314FE742400105A1A /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		14F9BF5414FE742400105A1A /* features.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = features.h; sourceTree = "<group>"; };
+		14F9BF5514FE742400105A1A /* forwards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = forwards.h; sourceTree = "<group>"; };
+		14F9BF5614FE742400105A1A /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
+		14F9BF5714FE742400105A1A /* reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reader.h; sourceTree = "<group>"; };
+		14F9BF5814FE742400105A1A /* value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = value.h; sourceTree = "<group>"; };
+		14F9BF5914FE742400105A1A /* writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = writer.h; sourceTree = "<group>"; };
+		14F9BF5C14FE742400105A1A /* json_batchallocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json_batchallocator.h; sourceTree = "<group>"; };
+		14F9BF5D14FE742400105A1A /* json_internalarray.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json_internalarray.inl; sourceTree = "<group>"; };
+		14F9BF5E14FE742400105A1A /* json_internalmap.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json_internalmap.inl; sourceTree = "<group>"; };
+		14F9BF5F14FE742400105A1A /* json_reader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_reader.cpp; sourceTree = "<group>"; };
+		14F9BF6014FE742400105A1A /* json_value.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_value.cpp; sourceTree = "<group>"; };
+		14F9BF6114FE742400105A1A /* json_valueiterator.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json_valueiterator.inl; sourceTree = "<group>"; };
+		14F9BF6214FE742400105A1A /* json_writer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_writer.cpp; sourceTree = "<group>"; };
+		14F9BF6314FE742400105A1A /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		14F9BF6514FE742400105A1A /* ofxJSONElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxJSONElement.cpp; sourceTree = "<group>"; };
+		14F9BF6614FE742400105A1A /* ofxJSONElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxJSONElement.h; sourceTree = "<group>"; };
 		9261314F14239FBF006BDDA6 /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testApp.h; sourceTree = "<group>"; };
 		9261315014239FBF006BDDA6 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		9261315214239FBF006BDDA6 /* testApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testApp.cpp; sourceTree = "<group>"; };
@@ -114,9 +136,83 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14F9BF4D14FE742400105A1A /* ofxJSON */ = {
+			isa = PBXGroup;
+			children = (
+				14F9BF4F14FE742400105A1A /* lib */,
+				14F9BF6314FE742400105A1A /* README */,
+				14F9BF6414FE742400105A1A /* src */,
+			);
+			path = ofxJSON;
+			sourceTree = SOURCE_ROOT;
+		};
+		14F9BF4F14FE742400105A1A /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				14F9BF5014FE742400105A1A /* include */,
+				14F9BF5A14FE742400105A1A /* src */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		14F9BF5014FE742400105A1A /* include */ = {
+			isa = PBXGroup;
+			children = (
+				14F9BF5114FE742400105A1A /* json */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		14F9BF5114FE742400105A1A /* json */ = {
+			isa = PBXGroup;
+			children = (
+				14F9BF5214FE742400105A1A /* autolink.h */,
+				14F9BF5314FE742400105A1A /* config.h */,
+				14F9BF5414FE742400105A1A /* features.h */,
+				14F9BF5514FE742400105A1A /* forwards.h */,
+				14F9BF5614FE742400105A1A /* json.h */,
+				14F9BF5714FE742400105A1A /* reader.h */,
+				14F9BF5814FE742400105A1A /* value.h */,
+				14F9BF5914FE742400105A1A /* writer.h */,
+			);
+			path = json;
+			sourceTree = "<group>";
+		};
+		14F9BF5A14FE742400105A1A /* src */ = {
+			isa = PBXGroup;
+			children = (
+				14F9BF5B14FE742400105A1A /* lib_json */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		14F9BF5B14FE742400105A1A /* lib_json */ = {
+			isa = PBXGroup;
+			children = (
+				14F9BF5C14FE742400105A1A /* json_batchallocator.h */,
+				14F9BF5D14FE742400105A1A /* json_internalarray.inl */,
+				14F9BF5E14FE742400105A1A /* json_internalmap.inl */,
+				14F9BF5F14FE742400105A1A /* json_reader.cpp */,
+				14F9BF6014FE742400105A1A /* json_value.cpp */,
+				14F9BF6114FE742400105A1A /* json_valueiterator.inl */,
+				14F9BF6214FE742400105A1A /* json_writer.cpp */,
+			);
+			path = lib_json;
+			sourceTree = "<group>";
+		};
+		14F9BF6414FE742400105A1A /* src */ = {
+			isa = PBXGroup;
+			children = (
+				14F9BF6514FE742400105A1A /* ofxJSONElement.cpp */,
+				14F9BF6614FE742400105A1A /* ofxJSONElement.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				14F9BF4D14FE742400105A1A /* ofxJSON */,
 			);
 			name = addons;
 			sourceTree = "<group>";
@@ -292,6 +388,10 @@
 				92E984DB1432181A009B9FA1 /* particle.cpp in Sources */,
 				92A7ACDB1457ABC80027DEE5 /* binner.cpp in Sources */,
 				031A14A914A0E66400FA3AC9 /* vectorField.cpp in Sources */,
+				14F9BF6714FE742400105A1A /* json_reader.cpp in Sources */,
+				14F9BF6814FE742400105A1A /* json_value.cpp in Sources */,
+				14F9BF6914FE742400105A1A /* json_writer.cpp in Sources */,
+				14F9BF6A14FE742400105A1A /* ofxJSONElement.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,6 +477,10 @@
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
+				HEADER_SEARCH_PATHS = (
+					../../../addons/ofxJSON/lib/include,
+					"$(OF_CORE_HEADERS)",
+				);
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
@@ -463,6 +567,10 @@
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
+				HEADER_SEARCH_PATHS = (
+					../../../addons/ofxJSON/lib/include,
+					"$(OF_CORE_HEADERS)",
+				);
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (

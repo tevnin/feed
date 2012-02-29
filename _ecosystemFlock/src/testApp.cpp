@@ -5,12 +5,7 @@
 //--------------------------------------------------------------
 void testApp::setup(){
 
-    for (int i = 0; i < 2000; i++){
-		particle p;
-		p.pos.set(ofRandom(0,ofGetWidth()),ofRandom(0,ofGetHeight()));
-		p.vel.set(0,0);
-        myParticles.push_back(p);
-	}
+
 	
 	setupBins(ofGetWidth(), ofGetHeight(), 30,30);
 	
@@ -21,6 +16,33 @@ void testApp::setup(){
 
 	
 	//ofSetVerticalSync(true); // turned off, to see frameRateChanges...
+    
+    // tweet stuff
+    //franklinBook.loadFont("frabk.ttf", 32);
+    //franklinBook.setLineHeight(36);
+    
+    // Twitter API: http://dev.twitter.com/doc/get/trends/current
+    
+    url1 = "http://tweetriver.com/EdibleCircuits/test1/meta.json";
+    //string url2 = "http://tweetriver.com/EdibleCircuits/trend1/meta.json";
+    
+//    bool parsing1Successful = result1.open(url1);
+//    if ( parsing1Successful ){
+//        //cout << result.getRawString() << endl;
+//    }else{
+//        cout  << "Failed to parse JSON" << endl;
+//    }
+//    ofxJSONElement trend1 = result1["count"]["approved"];
+//    
+//    int num1 = trend1.asInt();
+//    
+//    for (int i = 0; i < num1/100; i++){
+//        particle p;
+//        p.pos.set(ofRandom(0,ofGetWidth()),ofRandom(0,ofGetHeight()));
+//        p.vel.set(0,0);
+//        myParticles.push_back(p);
+//    }
+
     
     //sound stuff------------------------------
 	
@@ -45,7 +67,6 @@ void testApp::setup(){
 
 //--------------------------------------------------------------
 void testApp::update(){
-    
     
 	//sound stuff------------------------------
 	
@@ -92,6 +113,27 @@ void testApp::update(){
 	
 	printf("%i \n", count);
     
+
+    
+    if(ofGetFrameNum()%600 == 0){
+        // Now parse the JSON
+        bool parsing1Successful = result1.open(url1);
+        if ( parsing1Successful ){
+            //cout << result.getRawString() << endl;
+        }else{
+            cout  << "Failed to parse JSON" << endl;
+        }
+        ofxJSONElement trend1 = result1["count"]["approved"];
+        
+        int num1 = trend1.asInt();
+        
+        for (int i = 0; i < num1/100; i++){
+            particle p;
+            p.pos.set(ofRandom(0,ofGetWidth()),ofRandom(0,ofGetHeight()));
+            p.vel.set(0,0);
+            myParticles.push_back(p);
+        }
+    }
     
     for (int i = 0; i < myParticles.size(); i++){
         

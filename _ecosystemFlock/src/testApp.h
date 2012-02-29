@@ -6,6 +6,7 @@
 #include "particle.h"
 #include "binner.h"
 #include "vectorField.h"
+#include "ofxJSONElement.h"
 
 class testApp : public ofSimpleApp{
 
@@ -35,7 +36,10 @@ class testApp : public ofSimpleApp{
         vector <float> volHistory;
         string typeStr;
 	
-        ofTrueTypeFont	verdana;	
+        ofTrueTypeFont	verdana;
+        ofxJSONElement result1;
+        ofxJSONElement result2;
+        string url1;
 	
         bool	bRepel;
         bool	blowIson; 
