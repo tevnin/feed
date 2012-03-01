@@ -74,6 +74,11 @@ class testApp : public ofSimpleApp{
     
         int time_r, time_g, time_b;
     
+        string url1, url2, url3, url4, url5;
+        
+        int oldNum1, newNum1, oldNum2, newNum2, oldNum3, newNum3, oldNum4, newNum4, oldNum5, newNum5 ;
+        int numDiff1, numDiff2, numDiff3, numDiff4, numDiff5;
+    
 		
 };
 

@@ -24,14 +24,16 @@ void testApp::setup(){
     
     // Twitter API: http://dev.twitter.com/doc/get/trends/current
     
-    string url1 = "http://tweetriver.com/EdibleCircuits/sxswtrend1/meta.json";
-    string url2 = "http://tweetriver.com/EdibleCircuits/sxswtrend2/meta.json";
-    string url3 = "http://tweetriver.com/EdibleCircuits/sxswtrend3/meta.json";
-    string url4 = "http://tweetriver.com/EdibleCircuits/sxswtrend4/meta.json";
-    string url5 = "http://tweetriver.com/EdibleCircuits/sxswtrend5/meta.json";
+    url1 = "http://tweetriver.com/EdibleCircuits/sxswtrend1/meta.json";
+    url2 = "http://tweetriver.com/EdibleCircuits/sxswtrend2/meta.json";
+    url3 = "http://tweetriver.com/EdibleCircuits/sxswtrend3/meta.json";
+    url4 = "http://tweetriver.com/EdibleCircuits/sxswtrend4/meta.json";
+    url5 = "http://tweetriver.com/EdibleCircuits/sxswtrend5/meta.json";
 
 	
     // Now parse the JSON
+    
+    //TREND 1------------------------------/////////////////////
     bool parsing1Successful = result1.open(url1);
     if ( parsing1Successful ){
         //cout << result.getRawString() << endl;
@@ -39,35 +41,28 @@ void testApp::setup(){
         cout  << "Failed to parse JSON" << endl;
     }
     ofxJSONElement trend1 = result1["count"]["approved"];
+    oldNum1 = trend1.asInt();
     
-    int num1 = trend1.asInt();
-    //cout << num/100 << endl;
     //printHash = false;
     
+    
+    //TREND 2------------------------------/////////////////////
     bool parsing2Successful = result2.open(url2);
     if ( parsing2Successful ){
-        //cout << result.getRawString() << endl;
+    //cout << result.getRawString() << endl;
     }else{
         cout  << "Failed to parse JSON" << endl;
     }
     ofxJSONElement trend2 = result2["count"]["approved"];
+    oldNum2 = trend2.asInt();
     
-    int num2 = trend2.asInt();
     //cout << num/100 << endl;
     printHash = false;
 	
     
-    if ((num1/100)>2000) {
-        num1 = 200,000;
-    }
-    
-    if ((num2/100)>2000) {
-        num2 = 200,000;
-    }
-    
     // particle stuff
 
-    for (int i = 0; i < num1/100; i++){
+    for (int i = 0; i < oldNum1/100; i++){
         particle newParticle;
         newParticle.setInitialCondition(300,300,ofRandom(-10,10), ofRandom(-10,10));
         // more interesting with diversity :)
@@ -76,7 +71,7 @@ void testApp::setup(){
     }
     
     
-    for (int i = 0; i < num2/100; i++){
+    for (int i = 0; i < oldNum2/100; i++){
         particle newParticle;
         newParticle.setInitialCondition(300,300,ofRandom(-10,10), ofRandom(-10,10));
         // more interesting with diversity :)
@@ -86,7 +81,7 @@ void testApp::setup(){
 
 
      //sound stuff------------------------------
-	soundStream.listDevices();
+	/*soundStream.listDevices();
 	int bufferSize = 256;
 	left.assign(bufferSize, 0.0);
 	right.assign(bufferSize, 0.0);
@@ -97,7 +92,7 @@ void testApp::setup(){
 	smoothedVol     = 0.0;
 	scaledVol		= 0.0;
 	
-	soundStream.setup(this, 0, 2, 44100, bufferSize, 4);
+	soundStream.setup(this, 0, 2, 44100, bufferSize, 4);*/
     
 	//>>-------------------------------------------
 
@@ -109,10 +104,10 @@ void testApp::update(){
 	//sound stuff------------------------------
 	
 	//lets scale the vol up to a 0-1 range 
-	scaledVol = ofMap(smoothedVol, 0.0, 0.17, 0.0, 1.0, true);
+	//scaledVol = ofMap(smoothedVol, 0.0, 0.17, 0.0, 1.0, true);
 	
 	//records the volume into an array
-	volHistory.push_back( scaledVol );
+	//volHistory.push_back( scaledVol );
 	
 	//if we are bigger the the size we want to record - lets drop the oldest value
 	if( volHistory.size() >= 400 ){
@@ -121,11 +116,12 @@ void testApp::update(){
 
 	//sound stuff------------------------------    
     
-	
+	//trend 1------------------------------/////////////////////
 	for (int i = 0; i < myParticles.size(); i++){
 		computeBinPosition( myParticles[i].pos.x, myParticles[i].pos.y,  &(myParticles[i].bitFlagW), &(myParticles[i].bitFlagH));
 	}
     
+    //trend 2------------------------------/////////////////////
     for (int i = 0; i < myParticles2.size(); i++){
 		computeBinPosition( myParticles2[i].pos.x, myParticles2[i].pos.y,  &(myParticles2[i].bitFlagW), &(myParticles2[i].bitFlagH));
 	}
@@ -134,6 +130,7 @@ void testApp::update(){
 	
 	int count = 0;
 	
+    //trend 1------------------------------/////////////////////
     for (int i = 0; i < myParticles.size(); i++){
 		
 		unsigned int bitFlagH_pta = myParticles[i].bitFlagH;
@@ -148,11 +145,12 @@ void testApp::update(){
 				myParticles[i].addRepulsionForce( myParticles[j],15,1.2); 
                 myParticles[i].addForFlocking( myParticles[j]);
 
-				count ++;
+				//count ++;
 			}
         }
     }
     
+    //trend 2------------------------------/////////////////////
     for (int i = 0; i < myParticles2.size(); i++){
 		
 		unsigned int bitFlagH_pta = myParticles2[i].bitFlagH;
@@ -167,7 +165,7 @@ void testApp::update(){
 				myParticles2[i].addRepulsionForce( myParticles2[j],15,1.2); 
                 myParticles2[i].addForFlocking( myParticles2[j]);
                 
-				count ++;
+				//count ++;
 			}
         }
     }
@@ -176,26 +174,38 @@ void testApp::update(){
     
 
     
-    if(ofGetFrameNum()%600 == 0){
-        // Now parse the JSON
+    if(ofGetFrameNum()%100 == 0){
+        
         bool parsing1Successful = result1.open(url1);
         if ( parsing1Successful ){
             //cout << result.getRawString() << endl;
         }else{
             cout  << "Failed to parse JSON" << endl;
         }
+        
         ofxJSONElement trend1 = result1["count"]["approved"];
+        newNum1 = trend1.asInt();
         
-        int num1 = trend1.asInt();
+        if (newNum1>oldNum1) {
+            int numDiff1 = newNum1 - oldNum1;
+            newNum1 += numDiff1;
+        }
+        else {
+            newNum1 = oldNum1;
+        }
         
-        for (int i = 0; i < num1/100; i++){
+        for (int i = 0; i < numDiff1; i++){
             particle p;
             p.pos.set(ofRandom(0,ofGetWidth()),ofRandom(0,ofGetHeight()));
             p.vel.set(0,0);
             myParticles.push_back(p);
+            
+            cout << "numDiff1=" << endl;
+            cout << numDiff1 << endl;
         }
         
-        // Now parse the JSON
+        /////////////////////TREND 2/////////////////////
+        
         bool parsing2Successful = result2.open(url1);
         if ( parsing2Successful ){
             //cout << result.getRawString() << endl;
@@ -203,10 +213,17 @@ void testApp::update(){
             cout  << "Failed to parse JSON" << endl;
         }
         ofxJSONElement trend2 = result2["count"]["approved"];
+        newNum2 = trend2.asInt();
         
-        int num2 = trend2.asInt();
+        if (newNum2>oldNum2) {
+            int numDiff2 = newNum2 - oldNum2;
+            newNum2 += numDiff2;
+        }
+        else {
+            newNum2 = oldNum2;
+        }
         
-        for (int i = 0; i < num1/100; i++){
+        for (int i = 0; i < numDiff2; i++){
             particle p;
             p.pos.set(ofRandom(0,ofGetWidth()),ofRandom(0,ofGetHeight()));
             p.vel.set(0,0);
@@ -216,46 +233,18 @@ void testApp::update(){
     }
     
     for (int i = 0; i < myParticles.size(); i++){
-        
-        //if (keyOption==1) {
+            
             myParticles[i].cohesion.distance = 1600;
             myParticles[i].alignment.distance = 1600;
             myParticles[i].seperation.distance = 1600;
             
             
             myParticles[i].cohesion.strength = 0.15;
-            myParticles[i].alignment.strength = scaledVol*2;
+            myParticles[i].alignment.strength = 0.15;
             myParticles[i].seperation.strength = 0.015;
             
             myParticles[i].damping =  0.03f;	
-        //}
-        /*
-        else if (keyOption==2) {
-            myParticles[i].cohesion.distance = 200;
-            myParticles[i].alignment.distance = 600;
-            myParticles[i].seperation.distance = 400;
-            
-            
-            myParticles[i].cohesion.strength = 0.015;
-            myParticles[i].alignment.strength = scaledVol;
-            myParticles[i].seperation.strength = 0.015;
-            
-            myParticles[i].damping =  0.05f;	
-        }
-        
-        else if (keyOption==3) {
-            myParticles[i].cohesion.distance = 800;
-            myParticles[i].alignment.distance = 800;
-            myParticles[i].seperation.distance = 400;
-            
-            
-            myParticles[i].cohesion.strength = 0.30;
-            myParticles[i].alignment.strength = scaledVol * 2;
-            myParticles[i].seperation.strength = 0.015;
-            
-            myParticles[i].damping =  0.5f;	
-        }*/
-         
+                 
         if (myParticles[i].alignment.strength < 0.15) {
             myParticles[i].alignment.strength = 0.15;
         }
@@ -302,7 +291,7 @@ void testApp::update(){
         
         
         myParticles2[i].cohesion.strength = 0.15;
-        myParticles2[i].alignment.strength = scaledVol*2;
+        myParticles2[i].alignment.strength = 0.15;
         myParticles2[i].seperation.strength = 0.015;
         
         myParticles2[i].damping =  0.05f;	
@@ -376,6 +365,7 @@ void testApp::draw(){
     
 	for (int i = 0; i < myParticles.size(); i++){
         
+        ofDrawBitmapString("#itsTimeForYouToRealize", myParticles[0].pos.x, myParticles[0].pos.y);  
         //if (keyOption==1) {
             ofSetColor(0, 0, 0);
             myParticles[i].drawBird();
@@ -392,6 +382,8 @@ void testApp::draw(){
     
     for (int i=0; i < myParticles2.size(); i++) {
         ofSetColor(250, 0, 117);
+        
+        ofDrawBitmapString("#Breitbart", myParticles2[0].pos.x, myParticles2[0].pos.y); 
         myParticles2[i].drawBird();
     }
 	
