@@ -24,8 +24,11 @@ void testApp::setup(){
     
     // Twitter API: http://dev.twitter.com/doc/get/trends/current
     
-    string url1 = "http://tweetriver.com/EdibleCircuits/test1/meta.json";
-    string url2 = "http://tweetriver.com/EdibleCircuits/trend1/meta.json";
+    string url1 = "http://tweetriver.com/EdibleCircuits/sxswtrend1/meta.json";
+    string url2 = "http://tweetriver.com/EdibleCircuits/sxswtrend2/meta.json";
+    string url3 = "http://tweetriver.com/EdibleCircuits/sxswtrend3/meta.json";
+    string url4 = "http://tweetriver.com/EdibleCircuits/sxswtrend4/meta.json";
+    string url5 = "http://tweetriver.com/EdibleCircuits/sxswtrend5/meta.json";
 
 	
     // Now parse the JSON

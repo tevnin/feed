@@ -42,7 +42,6 @@ class testApp : public ofSimpleApp{
         ofTrueTypeFont	verdana;
         ofxJSONElement result1;
         ofxJSONElement result2;
-        string url1;
 	
         bool	bRepel;
         bool	blowIson; 
