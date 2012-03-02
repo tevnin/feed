@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxOsc.h"
+#include "ofxJSONElement.h"
 
 // listen on port 12345
 #define HOST "localhost"
@@ -40,4 +41,7 @@ class testApp : public ofBaseApp{
         bool            threeOn;
         bool            fourOn;
         bool            sliderOn;
+    
+        ofxJSONElement  twitter;
+        string          url;
 };

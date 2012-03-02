@@ -12,6 +12,8 @@ void testApp::setup(){
 	mouseButtonState = "";
 
 	ofBackground( 30, 30, 130 );
+    
+    string url = "http://tweetriver.com/EdibleCircuits/sxswtrend1.json";
 
 }
 
