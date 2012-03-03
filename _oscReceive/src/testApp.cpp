@@ -3,6 +3,9 @@
 //--------------------------------------------------------------
 void testApp::setup(){
     
+    jonnysMovies.loadMovie("http://dl.dropbox.com/u/5491478/EM%20Client/Feed/FeedTest01.mp4");
+    jonnysMovies.play();
+    
     font.loadFont("frabk.ttf", 32);
 	font.setLineHeight(36);
     
@@ -21,6 +24,7 @@ void testApp::setup(){
     twoOn = false;
     threeOn = false;
     fourOn = false;
+
 
 }
 
@@ -45,11 +49,9 @@ void testApp::update(){
         
         //controller1
 		if ( m.getAddress() == "/controller1/button1" ){
-			oneOn = true;
-		}
-		// check for mouse button message
-		else if ( m.getAddress() == "/controller1/button2" ){
-			twoOn = true;
+			oneOn = !oneOn;
+		}else if ( m.getAddress() == "/controller1/button2" ){
+			twoOn = !oneOn;
 		}
 		else if (m.getAddress() == "/controller1/button3"){
             threeOn = !threeOn;
@@ -64,9 +66,7 @@ void testApp::update(){
         //controller2
 		if ( m.getAddress() == "/controller2/button1" ){
 			oneOn = !oneOn;
-		}
-		// check for mouse button message
-		else if ( m.getAddress() == "/controller2/button2" ){
+		}else if ( m.getAddress() == "/controller2/button2" ){
 			twoOn = !twoOn;
 		}
 		else if (m.getAddress() == "/controller2/button3"){
@@ -82,9 +82,7 @@ void testApp::update(){
         //controller3
 		if ( m.getAddress() == "/controller3/button1" ){
 			oneOn = !oneOn;
-		}
-		// check for mouse button message
-		else if ( m.getAddress() == "/controller3/button2" ){
+		}else if ( m.getAddress() == "/controller3/button2" ){
 			twoOn = !twoOn;
 		}
 		else if (m.getAddress() == "/controller3/button3"){
@@ -100,9 +98,7 @@ void testApp::update(){
         //controller4
 		if ( m.getAddress() == "/controller4/button1" ){
 			oneOn = !oneOn;
-		}
-		// check for mouse button message
-		else if ( m.getAddress() == "/controller4/button2" ){
+		}else if ( m.getAddress() == "/controller4/button2" ){
 			twoOn = !twoOn;
 		}
 		else if (m.getAddress() == "/controller4/button3"){
@@ -135,37 +131,42 @@ void testApp::update(){
 
 //--------------------------------------------------------------
 void testApp::draw(){
-
-//	string buf;
-//	buf = "listening for osc messages on port" + ofToString( PORT );
-//	ofDrawBitmapString( buf, 10, 20 );
-//
-//	// draw mouse state
-//	buf = "mouse: " + ofToString( mouseX, 4) +  " " + ofToString( mouseY, 4 );
-//	ofDrawBitmapString( buf, 430, 20 );
-//	ofDrawBitmapString( mouseButtonState, 580, 20 );
-//
-//	for ( int i=0; i<NUM_MSG_STRINGS; i++ ){
-//		ofDrawBitmapString( msg_strings[i], 10, 40+15*i );
-//	}
+    jonnysMovies.draw(0, 0);
     
     if (oneOn == true) {
-        ofSetColor(255, 0, 0);
+        ofSetColor(255, 255, 255);
+        jonnysMovies.setPaused(false);
+        jonnysMovies.draw(0, 0);
         
+        ofSetColor(255, 0, 0);
         int n=ofRandom(twitter.size());
         string message = twitter[n]["text"].asString();
-        font.drawString(message, 10, 200);        
+        font.drawString(message, 10, 200);
+        ofSetColor(255, 255, 255);
     }else if (twoOn == true) {
+        ofSetColor(255, 255, 255);
+        jonnysMovies.setPaused(true);
+        jonnysMovies.draw(0, 0);
+        
         ofSetColor(0, 255, 0);
         int n=ofRandom(twitter.size());
         string message = twitter[n]["text"].asString();
         font.drawString(message, 10, 100);  
     }else if (threeOn == true) {
+        ofSetColor(255, 255, 255);
+        jonnysMovies.setPaused(false);
+        jonnysMovies.draw(0, 0);
+        
         ofSetColor(0, 0, 255);
         int n=ofRandom(twitter.size());
         string message = twitter[n]["text"].asString();
         font.drawString(message, 10, 300);  
     }else if (fourOn == true) {
+        ofSetColor(255, 255, 255);
+        jonnysMovies.setPaused(true);
+        jonnysMovies.draw(0, 0);
+        
+
         ofSetColor(255, 255, 255);
         int n=ofRandom(twitter.size());
         string message = twitter[n]["text"].asString();
