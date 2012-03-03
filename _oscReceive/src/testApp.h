@@ -27,7 +27,9 @@ class testApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);		
 
 		ofTrueTypeFont		font;
-		ofxOscReceiver	receiver;
+		ofxOscReceiver      receiver;
+        ofVideoPlayer       jonnysMovies;
+        bool                frameByframe;
 
 		int				current_msg_string;
 		string		msg_strings[NUM_MSG_STRINGS];
