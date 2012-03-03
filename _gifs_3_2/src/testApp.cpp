@@ -8,7 +8,7 @@ void testApp::setup(){
     
     vid.initGrabber(frameW,frameH);
 
-    //gifEncoder.setup(frameW, frameH, .25, 256);
+    gifEncoder.setup(frameW, frameH, .25, 256);
     //ofAddListener(ofxGifEncoder::OFX_GIF_SAVE_FINISHED, this, &testApp::onGifSaved);
     
     ofBackground(50, 40, 50);
@@ -92,7 +92,7 @@ void testApp::keyReleased(int key){
             break;
         case 's':
             cout <<"start saving\n" << endl;
-            //gifEncoder.save("test.gif");
+            gifEncoder.save("test.gif");
 			saveImages();
             break;
         default:
@@ -157,6 +157,8 @@ void testApp::saveImages(){
 
 void testApp::captureFrame() {
     
+	
+	gifEncoder.addFrame(vid.getPixels(), frameW, frameH, 24, .1f);
     ofImage * img = new ofImage();										// <-- this looks like a memory leak. 
     img->allocate(frameW, frameH, OF_IMAGE_COLOR);
     img->setFromPixels(vid.getPixels(), frameW, frameH, OF_IMAGE_COLOR);

@@ -35,7 +35,7 @@ class testApp : public ofBaseApp{
         int nFrames;
     
         ofVideoGrabber vid;
-        //ofxGifEncoder gifEncoder;
+        ofxGifEncoder gifEncoder;
 	
 		//ofVideoPlayer player;
 	
