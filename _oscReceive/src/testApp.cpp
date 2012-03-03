@@ -2,6 +2,10 @@
 
 //--------------------------------------------------------------
 void testApp::setup(){
+    
+    font.loadFont("frabk.ttf", 32);
+	font.setLineHeight(36);
+    
 	// listen on the given port
 	cout << "listening for osc messages on port " << PORT << "\n";
 	receiver.setup( PORT );
@@ -13,7 +17,10 @@ void testApp::setup(){
 
 	ofBackground( 30, 30, 130 );
     
-    string url = "http://tweetriver.com/EdibleCircuits/sxswtrend1.json";
+    oneOn = false;
+    twoOn = false;
+    threeOn = false;
+    fourOn = false;
 
 }
 
@@ -21,15 +28,13 @@ void testApp::setup(){
 void testApp::update(){
 
 	// hide old messages
-	for ( int i=0; i<NUM_MSG_STRINGS; i++ )
-	{
+	for ( int i=0; i<NUM_MSG_STRINGS; i++ ){
 		if ( timers[i] < ofGetElapsedTimef() )
 			msg_strings[i] = "";
 	}
 
 	// check for waiting messages
-	while( receiver.hasWaitingMessages() )
-	{
+	while( receiver.hasWaitingMessages() ){
 		// get the next message
 		ofxOscMessage m;
 		receiver.getNextMessage( &m );
@@ -40,11 +45,11 @@ void testApp::update(){
         
         //controller1
 		if ( m.getAddress() == "/controller1/button1" ){
-			oneOn = !oneOn;
+			oneOn = true;
 		}
 		// check for mouse button message
 		else if ( m.getAddress() == "/controller1/button2" ){
-			twoOn = !twoOn;
+			twoOn = true;
 		}
 		else if (m.getAddress() == "/controller1/button3"){
             threeOn = !threeOn;
@@ -111,33 +116,60 @@ void testApp::update(){
 		}
 
 	}
+    
+    if (ofGetFrameNum()%3600 == 0) {
+        //Twitter
+        string url = "http://tweetriver.com/EdibleCircuits/feedmixer.json";
+        // Now parse the JSON
+        bool parsingSuccessful = twitter.open(url);
+        if ( parsingSuccessful ){
+            cout << twitter.getRawString() << endl;
+        }else{
+            cout  << "Failed to parse JSON" << endl;
+        }
+    }
+    
+
 }
 
 
 //--------------------------------------------------------------
 void testApp::draw(){
 
-	string buf;
-	buf = "listening for osc messages on port" + ofToString( PORT );
-	ofDrawBitmapString( buf, 10, 20 );
-
-	// draw mouse state
-	buf = "mouse: " + ofToString( mouseX, 4) +  " " + ofToString( mouseY, 4 );
-	ofDrawBitmapString( buf, 430, 20 );
-	ofDrawBitmapString( mouseButtonState, 580, 20 );
-
-	for ( int i=0; i<NUM_MSG_STRINGS; i++ ){
-		ofDrawBitmapString( msg_strings[i], 10, 40+15*i );
-	}
+//	string buf;
+//	buf = "listening for osc messages on port" + ofToString( PORT );
+//	ofDrawBitmapString( buf, 10, 20 );
+//
+//	// draw mouse state
+//	buf = "mouse: " + ofToString( mouseX, 4) +  " " + ofToString( mouseY, 4 );
+//	ofDrawBitmapString( buf, 430, 20 );
+//	ofDrawBitmapString( mouseButtonState, 580, 20 );
+//
+//	for ( int i=0; i<NUM_MSG_STRINGS; i++ ){
+//		ofDrawBitmapString( msg_strings[i], 10, 40+15*i );
+//	}
     
     if (oneOn == true) {
         ofSetColor(255, 0, 0);
+        
+        int n=ofRandom(twitter.size());
+        string message = twitter[n]["text"].asString();
+        font.drawString(message, 10, 200);        
     }else if (twoOn == true) {
         ofSetColor(0, 255, 0);
+        int n=ofRandom(twitter.size());
+        string message = twitter[n]["text"].asString();
+        font.drawString(message, 10, 100);  
     }else if (threeOn == true) {
         ofSetColor(0, 0, 255);
+        int n=ofRandom(twitter.size());
+        string message = twitter[n]["text"].asString();
+        font.drawString(message, 10, 300);  
     }else if (fourOn == true) {
         ofSetColor(255, 255, 255);
+        int n=ofRandom(twitter.size());
+        string message = twitter[n]["text"].asString();
+        font.drawString(message, 10, 400);  
     }
 
 

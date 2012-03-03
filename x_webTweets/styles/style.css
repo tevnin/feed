@@ -1,0 +1,11 @@
+/* make me pretty */
+body {
+	background-color:#ff0;
+	color:#333;
+}
+.tweet {
+	width:400px;
+	height:200px;
+	border:1px dotted black;
+	float:left;
+}
