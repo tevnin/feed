@@ -263,8 +263,8 @@ void testApp::update(){
 			unsigned int bitFlagW_ptb = myParticles4[j].bitFlagW;
 			
 			if ((bitFlagW_pta & bitFlagW_ptb) && (bitFlagH_pta & bitFlagH_ptb)){
-				myParticles4[i].addRepulsionForce( myParticles3[j],15,1.2); 
-                myParticles4[i].addForFlocking( myParticles3[j]);
+				myParticles4[i].addRepulsionForce( myParticles4[j],15,1.2); 
+                myParticles4[i].addForFlocking( myParticles4[j]);
                 
 				count ++;
 			}
@@ -339,7 +339,8 @@ void testApp::update(){
             p.vel.set(0,0);
             myParticles.push_back(p);
         }
-
+        cout << "newnum2=" << endl;
+        cout << newNum2 << endl;
         
         // Now parse the JSON trend 3!!!!!!!!!!!!!!!
         bool parsing3Successful = result3.open(url3);
@@ -416,7 +417,7 @@ void testApp::update(){
             myParticles[i].seperation.distance = 1600;
             
             
-            myParticles[i].cohesion.strength = 0.15;
+            myParticles[i].cohesion.strength = 0.25;
             myParticles[i].alignment.strength = scaledVol*2;
             myParticles[i].seperation.strength = 0.015;
             
@@ -447,11 +448,11 @@ void testApp::update(){
         myParticles[i].resetForce();
     }
     
-    if (myParticles.size()==200) {
+    /*if (myParticles.size()==200) {
         for (int i = 0; i < myParticles.size(); i++){
             myParticles[i].alignment.strength = 2;
         }
-    }
+    }*/
     
     
     ///////////////// myParticles 2
@@ -463,18 +464,16 @@ void testApp::update(){
         myParticles2[i].seperation.distance = 1600;
         
         
-        myParticles2[i].cohesion.strength = 0.15;
+        myParticles2[i].cohesion.strength = 0.25;
         myParticles2[i].alignment.strength = scaledVol*2;
         myParticles2[i].seperation.strength = 0.015;
         
-        myParticles2[i].damping =  0.05f;	
+        myParticles2[i].damping =  0.01f;	
 
         
         if (myParticles2[i].alignment.strength < 0.15) {
             myParticles2[i].alignment.strength = 0.15;
         }
-        
-        
 	}
 
     for (int i = 0; i < myParticles2.size(); i++){
@@ -560,7 +559,7 @@ void testApp::update(){
         myParticles4[i].seperation.distance = 1600;
         
         
-        myParticles4[i].cohesion.strength = 0.15;
+        myParticles4[i].cohesion.strength = 0.25;
         myParticles4[i].alignment.strength = scaledVol*2;
         myParticles4[i].seperation.strength = 0.015;
         
@@ -608,7 +607,7 @@ void testApp::update(){
         time_g = ofMap(getHour.currentHour, 7, 13, 255, 226);
         time_b = ofMap(getHour.currentHour, 7, 13, 255, 0);
         
-        cout << time_r << endl;
+        //cout << time_r << endl;
     }
     
     else if ((getHour.currentHour>12)&&(getHour.currentHour<19)) {
@@ -616,7 +615,7 @@ void testApp::update(){
         time_g = ofMap(getHour.currentHour, 12, 19, 226, 156);
         time_b = ofMap(getHour.currentHour, 12, 19, 0, 5);
         
-        cout << time_r << endl;
+        //cout << time_r << endl;
     }
     
     else {
@@ -624,17 +623,8 @@ void testApp::update(){
         time_g = 114;
         time_b = 185;
         
-        cout << time_r << endl;
+        //cout << time_r << endl;
     }
-
-    
-    cout << "numDiff1=" << endl;
-    cout << numDiff1 << endl;
-    
-    cout << "numDiff2=" << endl;
-    cout << numDiff2 << endl;
-    
-
 }
 
 //--------------------------------------------------------------
@@ -658,14 +648,14 @@ void testApp::draw(){
     }
 	
     for (int i=0; i < myParticles3.size(); i++) {
-        ofSetColor(220, 220, 220, 220);
+        ofSetColor(255, 242, 0, 220);
         ofDrawBitmapString("#thirdtrend", myParticles3[0].pos.x, myParticles3[0].pos.y);
         myParticles3[i].drawBird();
     }
     
     for (int i=0; i < myParticles4.size(); i++) {
-        ofSetColor(255, 255, 255, 220);
-        ofDrawBitmapString("#fourthtrend", myParticles4[10].pos.x, myParticles4[10].pos.y);
+        ofSetColor(255, 255, 255);
+        ofDrawBitmapString("#fourthtrend", myParticles4[0].pos.x, myParticles4[0].pos.y);
         myParticles4[i].drawBird();
     }
 }
