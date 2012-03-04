@@ -551,6 +551,54 @@ void testApp::update(){
      }
      }*/
     
+    ///////////////// myParticles 4
+    for (int i = 0; i < myParticles4.size(); i++){
+        
+        
+        myParticles4[i].cohesion.distance = 1600;
+        myParticles4[i].alignment.distance = 1600;
+        myParticles4[i].seperation.distance = 1600;
+        
+        
+        myParticles4[i].cohesion.strength = 0.15;
+        myParticles4[i].alignment.strength = scaledVol*2;
+        myParticles4[i].seperation.strength = 0.015;
+        
+        myParticles4[i].damping =  0.01f;	
+        
+        
+        if (myParticles4[i].alignment.strength < 0.15) {
+            myParticles4[i].alignment.strength = 0.15;
+        }
+        
+        
+	}
+    
+    for (int i = 0; i < myParticles4.size(); i++){
+		myParticles4[i].addFlockingForce();
+		myParticles4[i].addDampingForce();
+		myParticles4[i].update();
+	}
+    
+    // wrap torroidally.
+	for (int i = 0; i < myParticles4.size(); i++){
+		ofVec2f pos = myParticles4[i].pos;
+		if (pos.x < 0) pos.x = ofGetWidth();
+		if (pos.x > ofGetWidth()) pos.x = 0;
+		if (pos.y < 0) pos.y = ofGetHeight();
+		if (pos.y > ofGetHeight()) pos.y = 0;
+		myParticles4[i].pos = pos;
+	}
+    
+	for (int i = 0; i < myParticles4.size(); i++){
+        myParticles4[i].resetForce();
+    }
+    /*if (myParticles.size()>500) {
+     for (int i = 0; i < myParticles.size(); i++){
+     myParticles[i].alignment.strength = 2;
+     }
+     }*/
+    
     ////////////////*************TIME*************////////////////
     
     cout << getHour.currentHour << endl;
@@ -563,13 +611,22 @@ void testApp::update(){
         cout << time_r << endl;
     }
     
-    if ((getHour.currentHour>12)&&(getHour.currentHour<19)) {
+    else if ((getHour.currentHour>12)&&(getHour.currentHour<19)) {
         time_r = ofMap(getHour.currentHour, 12, 19, 249, 255);
         time_g = ofMap(getHour.currentHour, 12, 19, 226, 156);
         time_b = ofMap(getHour.currentHour, 12, 19, 0, 5);
         
-        //cout << time_r << endl;
+        cout << time_r << endl;
     }
+    
+    else {
+        time_r = 53;
+        time_g = 114;
+        time_b = 185;
+        
+        cout << time_r << endl;
+    }
+
     
     cout << "numDiff1=" << endl;
     cout << numDiff1 << endl;
@@ -589,29 +646,27 @@ void testApp::draw(){
 
     
 	for (int i = 0; i < myParticles.size(); i++){
-        
-        //if (keyOption==1) {
-            ofSetColor(0, 0, 0);
-            myParticles[i].drawBird();
-        //}
-      /*  else if(keyOption==2){
-            myParticles[i].drawWeed();
-        }
-        else if(keyOption==3){
-            ofSetColor(100, 100, 100);
-            ofEnableAlphaBlending();
-            myParticles[i].drawSand();
-        }*/
+        ofSetColor(0, 0, 0);
+        ofDrawBitmapString("#itsTimeForYouToRealize", myParticles[0].pos.x, myParticles[0].pos.y);
+        myParticles[i].drawBird();
     }
     
     for (int i=0; i < myParticles2.size(); i++) {
         ofSetColor(250, 0, 117);
+        ofDrawBitmapString("#Breitbart", myParticles2[0].pos.x, myParticles2[0].pos.y);
         myParticles2[i].drawBird();
     }
 	
     for (int i=0; i < myParticles3.size(); i++) {
         ofSetColor(220, 220, 220, 220);
+        ofDrawBitmapString("#thirdtrend", myParticles3[0].pos.x, myParticles3[0].pos.y);
         myParticles3[i].drawBird();
+    }
+    
+    for (int i=0; i < myParticles4.size(); i++) {
+        ofSetColor(255, 255, 255, 220);
+        ofDrawBitmapString("#fourthtrend", myParticles3[0].pos.x, myParticles3[0].pos.y);
+        myParticles4[i].drawBird();
     }
 }
 
