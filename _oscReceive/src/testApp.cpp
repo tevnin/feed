@@ -128,6 +128,8 @@ void testApp::update(){
     }
     
     jonnysMovies.update();
+    
+    //api.twitter.com/1/trends/1.json&oauth_consumer_key=mxq8PZhuAlSPNbh4Sc3U0Q&oauth_consumer_secret=9GNnOXCXOVG9S78d15634HGTE5OG4io9q95INQPJc&oauth_token=493376157-eAJOc7MJuZ2rfdYbgjWielZ4gMsHyBjBF5D94yeR&oauth_token_secret=i3ERynzoagxe6FZOqgBh93yqJasCMBvuTmbNbLxIxk
 }
 
 

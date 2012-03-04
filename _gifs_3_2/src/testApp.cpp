@@ -92,7 +92,7 @@ void testApp::keyReleased(int key){
             break;
         case 's':
             cout <<"start saving\n" << endl;
-            gifEncoder.save("gifs/test.gif");
+            gifEncoder.save("gifs/test"+ofGetTimestampString()+".gif");
 			saveImages();
             break;
         default:

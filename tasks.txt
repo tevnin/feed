@@ -1,14 +1,28 @@
+done:
 x connect Twitter to particle code - Tami
 x different images for particles - Nidhi
-particle flocking and exploding - Nidhi 
-:( Mass Relevance - pull trending topics - Hirumi
-Mass Relevance - tweet through the API
-figure out ecosystem on 4 screens
-
-Popup video twitter - Tami
-hook up midi to oF - Maya
-
+x particle flocking and exploding - Nidhi 
+x hook up midi to oF - Maya
 x capture with kinect - Maya
+
+to do:
+fix/finish twitter/video overlay
 kinect to gif code - Maya
-visuals for image capture
-export to Mozilla
+limit gif code to 4 imgs
+connect gif code to osc/midi - Tami
+pull trending topics - Nidhi/Tami (figure out oauth)
+php/js pull imgs from folder to webpage
+
+zac:
+optimize particle code
+make birds attract to each other
+gif code - putting images where we want them
+
+automator:
+schedule - img upload to server
+automate - launching flocking
+schedule - launching flocking
+schedule - launching mixer
+automate - gif stuff
+schedule - gif stuff
+
