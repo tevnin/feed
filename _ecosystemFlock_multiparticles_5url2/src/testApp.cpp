@@ -5,6 +5,7 @@
 //--------------------------------------------------------------
 void testApp::setup(){
 
+    ofSetFrameRate(60);
 
 	int proportion = 100;
 	setupBins(ofGetWidth(), ofGetHeight(), 30,30);
@@ -658,6 +659,9 @@ void testApp::draw(){
         ofDrawBitmapString("#fourthtrend", myParticles4[0].pos.x, myParticles4[0].pos.y);
         myParticles4[i].drawBird();
     }
+    
+    ofSetColor(0, 0, 0);
+    ofDrawBitmapString("one bird = 100 tweets", ofGetWidth()-200, ofGetHeight()-50);
 }
 
 //--------------------------------------------------------------
