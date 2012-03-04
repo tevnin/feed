@@ -299,7 +299,7 @@ void particle::drawBird(){
     float angle = (float)atan2(-vel.y, vel.x);
     float theta =  -1.0*angle;
 	float heading2D = ofRadToDeg(theta)+90;
-    r = ofMap(pos.y, 0, ofGetHeight(), 2, 1);
+    r = ofMap(pos.y, 0, ofGetHeight(), 3.5, 1);
     ofPushMatrix();
     ofTranslate(pos.x, pos.y);
     ofRotateZ(heading2D);

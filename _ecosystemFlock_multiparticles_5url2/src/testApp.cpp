@@ -103,34 +103,34 @@ void testApp::setup(){
     //PARTICLESSSSSSS------------------------------/////////////////////
     for (int i = 0; i < oldNum1/proportion; i++){
         particle newParticle;
-        newParticle.setInitialCondition(300,300,ofRandom(-10,10), ofRandom(-10,10));
+        newParticle.setInitialCondition(ofRandom(ofGetWidth()),ofRandom(ofGetHeight()),ofRandom(-10,10), ofRandom(-10,10));
         // more interesting with diversity :)
-        //myParticle.damping = ofRandom(0.001, 0.05);
+        //myParticles[i].damping = ofRandom(0.001, 0.05);
         myParticles.push_back(newParticle);
     }
     
     
     for (int i = 0; i < oldNum2/proportion; i++){
         particle newParticle;
-        newParticle.setInitialCondition(300,300,ofRandom(-10,10), ofRandom(-10,10));
+        newParticle.setInitialCondition(ofRandom(ofGetWidth()),ofRandom(ofGetHeight()),ofRandom(-10,10), ofRandom(-10,10));
         // more interesting with diversity :)
-        //myParticle.damping = ofRandom(0.001, 0.05);
+        //myParticles[i].damping = ofRandom(0.001, 0.05);
         myParticles2.push_back(newParticle);
     }
     
     for (int i = 0; i < oldNum3/proportion; i++){
         particle newParticle;
-        newParticle.setInitialCondition(300,300,ofRandom(-10,10), ofRandom(-10,10));
+        newParticle.setInitialCondition(ofRandom(ofGetWidth()),ofRandom(ofGetHeight()),ofRandom(-10,10), ofRandom(-10,10));
         // more interesting with diversity :)
-        //myParticle.damping = ofRandom(0.001, 0.05);
+        //myParticles[i].damping = ofRandom(0.001, 0.05);
         myParticles3.push_back(newParticle);
     }
     
     for (int i = 0; i < oldNum4/proportion; i++){
         particle newParticle;
-        newParticle.setInitialCondition(300,300,ofRandom(-10,10), ofRandom(-10,10));
+        newParticle.setInitialCondition(ofRandom(ofGetWidth()),ofRandom(ofGetHeight()),ofRandom(-10,10), ofRandom(-10,10));
         // more interesting with diversity :)
-        //myParticle.damping = ofRandom(0.001, 0.05);
+        //myParticles[i].damping = ofRandom(0.001, 0.05);
         myParticles4.push_back(newParticle);
     }
 
@@ -295,10 +295,10 @@ void testApp::update(){
             numDiff1 = 0;
         }
         else {
-            numDiff1 = int(newNum1 - oldNum1);
+            numDiff1 = newNum1 - oldNum1;
         }
         
-        if (numDiff1>200) {
+        if (numDiff1>400) {
             numDiff1 = 0;
         }
         for (int i = 0; i < numDiff1; i++){
@@ -327,10 +327,10 @@ void testApp::update(){
             numDiff2 = 0;
         }
         else {
-            numDiff2 = int(newNum2 - oldNum2);
+            numDiff2 = newNum2 - oldNum2;
         }
         
-        if (numDiff2>200) {
+        if (numDiff2>400) {
             numDiff2 = 0;
         }
         for (int i = 0; i < numDiff2; i++){
@@ -360,10 +360,10 @@ void testApp::update(){
             numDiff3 = 0;
         }
         else {
-            numDiff3 = int(newNum3 - oldNum3);
+            numDiff3 = newNum3 - oldNum3;
         }
         
-        if (numDiff3>200) {
+        if (numDiff3>400) {
             numDiff3 = 0;
         }
         for (int i = 0; i < numDiff3; i++){
@@ -395,7 +395,7 @@ void testApp::update(){
             numDiff4 = newNum4 - oldNum4;
         }
         
-        if (numDiff4>200) {
+        if (numDiff4>400) {
             numDiff4 = 0;
         }
         for (int i = 0; i < numDiff4; i++){
@@ -564,7 +564,7 @@ void testApp::update(){
         myParticles4[i].alignment.strength = scaledVol*2;
         myParticles4[i].seperation.strength = 0.015;
         
-        myParticles4[i].damping =  0.01f;	
+        myParticles4[i].damping =  0.02;	
         
         
         if (myParticles4[i].alignment.strength < 0.15) {
@@ -665,7 +665,7 @@ void testApp::draw(){
     
     for (int i=0; i < myParticles4.size(); i++) {
         ofSetColor(255, 255, 255, 220);
-        ofDrawBitmapString("#fourthtrend", myParticles3[0].pos.x, myParticles3[0].pos.y);
+        ofDrawBitmapString("#fourthtrend", myParticles4[10].pos.x, myParticles4[10].pos.y);
         myParticles4[i].drawBird();
     }
 }
