@@ -31,6 +31,8 @@ void testApp::setup(){
 //--------------------------------------------------------------
 void testApp::update(){
 
+    jonnysMovies.idleMovie();
+    
 	// hide old messages
 	for ( int i=0; i<NUM_MSG_STRINGS; i++ ){
 		if ( timers[i] < ofGetElapsedTimef() )
@@ -125,18 +127,18 @@ void testApp::update(){
         }
     }
     
-
+    jonnysMovies.update();
 }
 
 
 //--------------------------------------------------------------
 void testApp::draw(){
-    jonnysMovies.draw(0, 0);
+    jonnysMovies.draw(0, 0, ofGetWidth(), ofGetHeight());
     
     if (oneOn == true) {
         ofSetColor(255, 255, 255);
-        jonnysMovies.setPaused(false);
-        jonnysMovies.draw(0, 0);
+        //jonnysMovies.setPaused(false);
+        //jonnysMovies.draw(0, 0);
         
         ofSetColor(255, 0, 0);
         int n=ofRandom(twitter.size());
@@ -145,8 +147,8 @@ void testApp::draw(){
         ofSetColor(255, 255, 255);
     }else if (twoOn == true) {
         ofSetColor(255, 255, 255);
-        jonnysMovies.setPaused(true);
-        jonnysMovies.draw(0, 0);
+        //jonnysMovies.setPaused(true);
+        //jonnysMovies.draw(0, 0);
         
         ofSetColor(0, 255, 0);
         int n=ofRandom(twitter.size());
@@ -154,8 +156,8 @@ void testApp::draw(){
         font.drawString(message, 10, 100);  
     }else if (threeOn == true) {
         ofSetColor(255, 255, 255);
-        jonnysMovies.setPaused(false);
-        jonnysMovies.draw(0, 0);
+        //jonnysMovies.setPaused(false);
+        //jonnysMovies.draw(0, 0);
         
         ofSetColor(0, 0, 255);
         int n=ofRandom(twitter.size());
@@ -163,8 +165,8 @@ void testApp::draw(){
         font.drawString(message, 10, 300);  
     }else if (fourOn == true) {
         ofSetColor(255, 255, 255);
-        jonnysMovies.setPaused(true);
-        jonnysMovies.draw(0, 0);
+        //jonnysMovies.setPaused(true);
+        //jonnysMovies.draw(0, 0);
         
 
         ofSetColor(255, 255, 255);
