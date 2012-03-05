@@ -6,7 +6,7 @@ void testApp::setup(){
     jonnysMovies.loadMovie("http://dl.dropbox.com/u/5491478/EM%20Client/Feed/FeedTest01.mp4");
     jonnysMovies.play();
     
-    font.loadFont("frabk.ttf", 32);
+    font.loadFont("Oswald-Bold.ttf", 32);
 	font.setLineHeight(36);
     
 	// listen on the given port
@@ -46,78 +46,78 @@ void testApp::update(){
 		receiver.getNextMessage( &m );
 
 		// check for mouse moved message
-        
         //this is the address - put it in as a string
-        
+
         //controller1
 		if ( m.getAddress() == "/controller1/button1" ){
-			oneOn = !oneOn;
+			oneOn = true;
 		}else if ( m.getAddress() == "/controller1/button2" ){
-			twoOn = !oneOn;
-		}
-		else if (m.getAddress() == "/controller1/button3"){
-            threeOn = !threeOn;
-		}
-        else if (m.getAddress() == "/controller1/button4"){
-            fourOn = !fourOn;
-		}
-        else if (m.getAddress() == "/controller1/slider1"){
-            sliderOn = !sliderOn;
-		}
+			twoOn = true;
+		}else if (m.getAddress() == "/controller1/button3"){
+            threeOn = true;
+		}else if (m.getAddress() == "/controller1/button4"){
+            fourOn = true;
+		}else if (m.getAddress() == "/controller1/slider1"){
+            sliderOn = true;
+		}else {
+            oneOn = false;
+            twoOn = false;
+            threeOn = false;
+            fourOn = false;
+            sliderOn = false;
+        }
         
         //controller2
 		if ( m.getAddress() == "/controller2/button1" ){
-			oneOn = !oneOn;
+			oneOn = true;
 		}else if ( m.getAddress() == "/controller2/button2" ){
-			twoOn = !twoOn;
-		}
-		else if (m.getAddress() == "/controller2/button3"){
-            threeOn = !threeOn;
-		}
-        else if (m.getAddress() == "/controller2/button4"){
-            fourOn = !fourOn;
-		}
-        else if (m.getAddress() == "/controller2/slider1"){
-            sliderOn = !sliderOn;
-		}
+			twoOn = true;
+		}else if (m.getAddress() == "/controller2/button3"){
+            threeOn = true;
+		}else if (m.getAddress() == "/controller2/button4"){
+            fourOn = true;
+		}else if (m.getAddress() == "/controller2/slider1"){
+            sliderOn = true;
+        }
         
         //controller3
 		if ( m.getAddress() == "/controller3/button1" ){
-			oneOn = !oneOn;
+			oneOn = true;
 		}else if ( m.getAddress() == "/controller3/button2" ){
-			twoOn = !twoOn;
+			twoOn = true;
 		}
 		else if (m.getAddress() == "/controller3/button3"){
-            threeOn = !threeOn;
+            threeOn = true;
 		}
         else if (m.getAddress() == "/controller3/button4"){
-            fourOn = !fourOn;
+            fourOn = true;
 		}
         else if (m.getAddress() == "/controller3/slider1"){
-            sliderOn = !sliderOn;
+            sliderOn = true;
 		}
         
         //controller4
 		if ( m.getAddress() == "/controller4/button1" ){
-			oneOn = !oneOn;
+			oneOn = true;
 		}else if ( m.getAddress() == "/controller4/button2" ){
-			twoOn = !twoOn;
+			twoOn = true;
 		}
 		else if (m.getAddress() == "/controller4/button3"){
-            threeOn = !threeOn;
+            threeOn = true;
 		}
         else if (m.getAddress() == "/controller4/button4"){
-            fourOn = !fourOn;
+            fourOn = true;
 		}
         else if (m.getAddress() == "/controller4/slider1"){
-            sliderOn = !sliderOn;
+            sliderOn = true;
 		}
+        
 
 	}
     
     if (ofGetFrameNum()%3600 == 0) {
         //Twitter
-        string url = "http://tweetriver.com/EdibleCircuits/feedmixer.json";
+        string url = "http://tweetriver.com/EdibleCircuits/feedmixer.json?limit=16";
         // Now parse the JSON
         bool parsingSuccessful = twitter.open(url);
         if ( parsingSuccessful ){
@@ -128,53 +128,43 @@ void testApp::update(){
     }
     
     jonnysMovies.update();
-    
-    //api.twitter.com/1/trends/1.json&oauth_consumer_key=mxq8PZhuAlSPNbh4Sc3U0Q&oauth_consumer_secret=9GNnOXCXOVG9S78d15634HGTE5OG4io9q95INQPJc&oauth_token=493376157-eAJOc7MJuZ2rfdYbgjWielZ4gMsHyBjBF5D94yeR&oauth_token_secret=i3ERynzoagxe6FZOqgBh93yqJasCMBvuTmbNbLxIxk
 }
 
 
 //--------------------------------------------------------------
 void testApp::draw(){
     jonnysMovies.draw(0, 0, ofGetWidth(), ofGetHeight());
+    int n=ofRandom(twitter.size());
     
     if (oneOn == true) {
-        ofSetColor(255, 255, 255);
-        //jonnysMovies.setPaused(false);
-        //jonnysMovies.draw(0, 0);
         
-        ofSetColor(255, 0, 0);
-        int n=ofRandom(twitter.size());
+        ofSetColor(0,255,255);
         string message = twitter[n]["text"].asString();
-        font.drawString(message, 10, 200);
+        //vector<string> split = ofSplitString(message, "sxsw");
+        font.drawString(message, 10, ofGetHeight()/5);
+        
         ofSetColor(255, 255, 255);
     }else if (twoOn == true) {
-        ofSetColor(255, 255, 255);
-        //jonnysMovies.setPaused(true);
-        //jonnysMovies.draw(0, 0);
         
-        ofSetColor(0, 255, 0);
-        int n=ofRandom(twitter.size());
+        ofSetColor(255,0,255);
         string message = twitter[n]["text"].asString();
-        font.drawString(message, 10, 100);  
+        font.drawString(message, 10, 2*ofGetHeight()/5); 
+        
+        ofSetColor(255, 255, 255);
     }else if (threeOn == true) {
-        ofSetColor(255, 255, 255);
-        //jonnysMovies.setPaused(false);
-        //jonnysMovies.draw(0, 0);
         
-        ofSetColor(0, 0, 255);
-        int n=ofRandom(twitter.size());
+        ofSetColor(255,255,0);
         string message = twitter[n]["text"].asString();
-        font.drawString(message, 10, 300);  
+        font.drawString(message, 10, 3*ofGetHeight()/5); 
+        
+        ofSetColor(255, 255, 255);
     }else if (fourOn == true) {
-        ofSetColor(255, 255, 255);
-        //jonnysMovies.setPaused(true);
-        //jonnysMovies.draw(0, 0);
         
-
-        ofSetColor(255, 255, 255);
-        int n=ofRandom(twitter.size());
+        ofSetColor(0,0,0);
         string message = twitter[n]["text"].asString();
-        font.drawString(message, 10, 400);  
+        font.drawString(message, 10, 4*ofGetHeight()/5);  
+        
+        ofSetColor(255, 255, 255);
     }
 
 
