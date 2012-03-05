@@ -342,6 +342,7 @@ void testApp::update(){
         cout << "newnum2=" << endl;
         cout << newNum2 << endl;
         
+        
         // Now parse the JSON trend 3!!!!!!!!!!!!!!!
         bool parsing3Successful = result3.open(url3);
         if ( parsing3Successful ){
@@ -357,7 +358,7 @@ void testApp::update(){
         oldNum3 = oldNum3 / proportion;
         
         if (newNum3<oldNum3) {
-            newNum3 = oldNum3; 
+            //newNum3 = oldNum3; 
             numDiff3 = 0;
         }
         else {
@@ -511,7 +512,7 @@ void testApp::update(){
         myParticles3[i].seperation.distance = 1600;
         
         
-        myParticles3[i].cohesion.strength = 0.15;
+        myParticles3[i].cohesion.strength = 0.25;
         myParticles3[i].alignment.strength = scaledVol*2;
         myParticles3[i].seperation.strength = 0.015;
         
@@ -637,25 +638,25 @@ void testApp::draw(){
     
 	for (int i = 0; i < myParticles.size(); i++){
         ofSetColor(0, 0, 0);
-        ofDrawBitmapString("#itsTimeForYouToRealize", myParticles[0].pos.x, myParticles[0].pos.y);
+        ofDrawBitmapString("#itsTimeForYouToRealize", myParticles[0].pos.x+10, myParticles[0].pos.y+10);
         myParticles[i].drawBird();
     }
     
     for (int i=0; i < myParticles2.size(); i++) {
         ofSetColor(250, 0, 117);
-        ofDrawBitmapString("#Breitbart", myParticles2[0].pos.x, myParticles2[0].pos.y);
+        ofDrawBitmapString("#Breitbart", myParticles2[0].pos.x+10, myParticles2[0].pos.y+10);
         myParticles2[i].drawBird();
     }
 	
     for (int i=0; i < myParticles3.size(); i++) {
-        ofSetColor(255, 242, 0, 220);
-        ofDrawBitmapString("#thirdtrend", myParticles3[0].pos.x, myParticles3[0].pos.y);
+        ofSetColor(255, 242, 0);
+        ofDrawBitmapString("#thirdtrend", myParticles3[0].pos.x+10, myParticles3[0].pos.y+10);
         myParticles3[i].drawBird();
     }
     
     for (int i=0; i < myParticles4.size(); i++) {
         ofSetColor(255, 255, 255);
-        ofDrawBitmapString("#fourthtrend", myParticles4[0].pos.x, myParticles4[0].pos.y);
+        ofDrawBitmapString("#fourthtrend", myParticles4[0].pos.x+10, myParticles4[0].pos.y+10);
         myParticles4[i].drawBird();
     }
 }
