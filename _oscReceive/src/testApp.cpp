@@ -24,6 +24,8 @@ void testApp::setup(){
     twoOn = false;
     threeOn = false;
     fourOn = false;
+    
+    stringSize = 1;
 
 
 }
@@ -59,6 +61,7 @@ void testApp::update(){
             fourOn = true;
 		}else if (m.getAddress() == "/controller1/slider1"){
             sliderOn = true;
+            stringSize = m.getArgAsInt32( 1 );
 		}else {
             oneOn = false;
             twoOn = false;
@@ -112,10 +115,13 @@ void testApp::update(){
             sliderOn = true;
 		}
         
+        if(m.getArgAsFloat(0)){
+        }
+        
 
 	}
     
-    if (ofGetFrameNum()%3600 == 0) {
+    if (ofGetFrameNum()%1800 == 0) {
         //Twitter
         string url = "http://tweetriver.com/EdibleCircuits/feedmixer.json?limit=16";
         // Now parse the JSON
@@ -125,6 +131,8 @@ void testApp::update(){
         }else{
             cout  << "Failed to parse JSON" << endl;
         }
+        
+        int n=ofRandom(twitter.size());
     }
     
     jonnysMovies.update();
@@ -134,36 +142,102 @@ void testApp::update(){
 //--------------------------------------------------------------
 void testApp::draw(){
     jonnysMovies.draw(0, 0, ofGetWidth(), ofGetHeight());
-    int n=ofRandom(twitter.size());
+    
     
     if (oneOn == true) {
         
+        ofSetColor(255, 255, 255);
+        string user = "@" + twitter[1]["user"]["screen_name"].asString() + ":";
+        font.drawString(user, 10, ofGetHeight()/5 - 50);
+        
         ofSetColor(0,255,255);
-        string message = twitter[n]["text"].asString();
-        //vector<string> split = ofSplitString(message, "sxsw");
-        font.drawString(message, 10, ofGetHeight()/5);
+        string message = twitter[1]["text"].asString();
+        
+        float messageWidth = font.stringWidth(message);
+        if (messageWidth > ofGetWidth()-10) {
+            string line1 = message.substr(0, 70);
+            string line2 = message.substr(71, 70);
+            
+            font.drawString(line1, 10, ofGetHeight()/5);
+            font.drawString(line2, 10, ofGetHeight()/5+50);
+        }else {
+            font.drawString(message, 10, ofGetHeight()/5);
+        }
+        
         
         ofSetColor(255, 255, 255);
     }else if (twoOn == true) {
         
+        ofSetColor(255, 255, 255);
+        string user = "@" + twitter[2]["user"]["screen_name"].asString() + ":";
+        font.drawString(user, 10, 2*ofGetHeight()/5 - 50);
+        
         ofSetColor(255,0,255);
-        string message = twitter[n]["text"].asString();
-        font.drawString(message, 10, 2*ofGetHeight()/5); 
+        string message = twitter[2]["text"].asString();
+        float messageWidth = font.stringWidth(message);
+        if (messageWidth > ofGetWidth()-10) {
+            string line1 = message.substr(0, 70);
+            string line2 = message.substr(71, 70);
+            
+            font.drawString(line1, 10, 2*ofGetHeight()/5);
+            font.drawString(line2, 10, 2*ofGetHeight()/5+50);
+        }else {
+            font.drawString(message, 10, 2*ofGetHeight()/5);
+        } 
         
         ofSetColor(255, 255, 255);
     }else if (threeOn == true) {
         
+        ofSetColor(255, 255, 255);
+        string user = "@" + twitter[3]["user"]["screen_name"].asString() + ":";
+        font.drawString(user, 10, 3*ofGetHeight()/5 - 50);
+        
         ofSetColor(255,255,0);
-        string message = twitter[n]["text"].asString();
-        font.drawString(message, 10, 3*ofGetHeight()/5); 
+        string message = twitter[3]["text"].asString();
+        float messageWidth = font.stringWidth(message);
+        if (messageWidth > ofGetWidth()-10) {
+            string line1 = message.substr(0, 70);
+            string line2 = message.substr(71, 70);
+            
+            font.drawString(line1, 10, 3*ofGetHeight()/5);
+            font.drawString(line2, 10, 3*ofGetHeight()/5+50);
+        }else {
+            font.drawString(message, 10, 3*ofGetHeight()/5);
+        }
         
         ofSetColor(255, 255, 255);
     }else if (fourOn == true) {
         
-        ofSetColor(0,0,0);
-        string message = twitter[n]["text"].asString();
-        font.drawString(message, 10, 4*ofGetHeight()/5);  
+        ofSetColor(255, 255, 255);
+        string user = "@" + twitter[4]["user"]["screen_name"].asString() + ":";
+        font.drawString(user, 10, 4*ofGetHeight()/5 - 50);
         
+        ofSetColor(200,200,200);
+        string message = twitter[4]["text"].asString();
+        float messageWidth = font.stringWidth(message);
+        if (messageWidth > ofGetWidth()-10) {
+            string line1 = message.substr(0, 70);
+            string line2 = message.substr(71, 70);
+            
+            font.drawString(line1, 10, 4*ofGetHeight()/5);
+            font.drawString(line2, 10, 4*ofGetHeight()/5+50);
+        }else {
+            font.drawString(message, 10, 4*ofGetHeight()/5);
+        } 
+        
+        ofSetColor(255, 255, 255);
+    }else if (sliderOn == true){
+        ofSetColor(0, 0, 0);
+        string feed = "#FEED";
+        
+        ofPushMatrix();
+        ofScale(stringSize, stringSize);
+        float feedWidth = font.stringWidth(feed);
+        float feedHeight = font.stringHeight(feed);
+        
+        font.drawString(feed, ofGetWidth()/2-feedWidth/2, ofGetHeight()/2-feedHeight/2);
+        
+        ofPopMatrix();
         ofSetColor(255, 255, 255);
     }
 

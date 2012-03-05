@@ -46,4 +46,5 @@ class testApp : public ofBaseApp{
     
         ofxJSONElement  twitter;
         string          url;
+        int stringSize;
 };
