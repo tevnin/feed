@@ -3,6 +3,7 @@
 //--------------------------------------------------------------
 void testApp::setup(){
     
+    //LOAD IN JONNY'S VIDEO
     jonnysMovies.loadMovie("http://dl.dropbox.com/u/5491478/EM%20Client/Feed/FeedTest01.mp4");
     jonnysMovies.play();
     
@@ -13,13 +14,10 @@ void testApp::setup(){
 	cout << "listening for osc messages on port " << PORT << "\n";
 	receiver.setup( PORT );
 
-	current_msg_string = 0;
-	mouseX = 0;
-	mouseY = 0;
-	mouseButtonState = "";
 
 	ofBackground( 30, 30, 130 );
     
+    //initialize variables
     oneOn = false;
     twoOn = false;
     threeOn = false;
@@ -34,12 +32,7 @@ void testApp::setup(){
 void testApp::update(){
 
     jonnysMovies.idleMovie();
-    
-	// hide old messages
-	for ( int i=0; i<NUM_MSG_STRINGS; i++ ){
-		if ( timers[i] < ofGetElapsedTimef() )
-			msg_strings[i] = "";
-	}
+
 
 	// check for waiting messages
 	while( receiver.hasWaitingMessages() ){
@@ -47,8 +40,7 @@ void testApp::update(){
 		ofxOscMessage m;
 		receiver.getNextMessage( &m );
 
-		// check for mouse moved message
-        //this is the address - put it in as a string
+		//check for message
 
         //controller1
 		if ( m.getAddress() == "/controller1/button1" ){
@@ -64,7 +56,6 @@ void testApp::update(){
             twoOn = false;
             threeOn = false;
             fourOn = false;
-            //sliderOn = false;
         } 
         if (m.getAddress() == "/controller1/slider1"){
             sliderOn = true;
@@ -124,7 +115,8 @@ void testApp::update(){
         
 
 	}
-    
+        
+    //refresh tweets every 30 seconds
     if (ofGetFrameNum()%1800 == 0) {
         //Twitter
         string url = "http://tweetriver.com/EdibleCircuits/feedmixer.json?limit=5";
@@ -233,7 +225,7 @@ void testApp::draw(){
     }else if (sliderOn == true){
         ofSetColor(0, 0, 0);
         string feed = "#FEED";
-        float mappedSize = ofMap(stringSize, 0, 127, 1, 3);
+        float mappedSize = ofMap(stringSize, 0, 127, 1, 5);
         
         float feedWidth = font.stringWidth(feed)/2;
         float feedHeight = font.stringHeight(feed)/2;
