@@ -5,7 +5,7 @@
 //--------------------------------------------------------------
 void testApp::setup(){
 
-    ofSetFrameRate(60);
+    //ofSetFrameRate(60);
 
 	int proportion = 100;
 	setupBins(ofGetWidth(), ofGetHeight(), 30,30);
@@ -13,16 +13,17 @@ void testApp::setup(){
 	ofBackground(255, 255, 255);
 	ofSetCircleResolution(6);
     
+    // Loading Fonts and Images
+    
     sky.loadImage("sunset_bw_1920.jpg");
+    Archer.loadFont("ArcheBoo", 14);
+    Archer.setLineHeight(22);
 
-	
+
 	ofSetVerticalSync(true); // turned off, to see frameRateChanges...
     
     //***************>>>>>>>>TWITTER>>>>>>>>***************//
-    
-    //franklinBook.loadFont("frabk.ttf", 32);
-    //franklinBook.setLineHeight(36);
-    
+        
     // Twitter API: http://dev.twitter.com/doc/get/trends/current
     
     url1 = "http://tweetriver.com/EdibleCircuits/sxswtrend1/meta.json";
@@ -150,6 +151,7 @@ void testApp::setup(){
 	scaledVol		= 0.0;
 	
 	soundStream.setup(this, 0, 2, 44100, bufferSize, 4);
+    
     
 	//>>-------------------------------------------
 
@@ -301,7 +303,7 @@ void testApp::update(){
             numDiff1 = newNum1 - oldNum1;
         }
         
-        if (numDiff1>400) {
+        if ((numDiff1>400)||(numDiff1<0)) {
             numDiff1 = 0;
         }
         for (int i = 0; i < numDiff1; i++){
@@ -333,7 +335,7 @@ void testApp::update(){
             numDiff2 = newNum2 - oldNum2;
         }
         
-        if (numDiff2>400) {
+        if ((numDiff2>400)||(numDiff2<0)) {
             numDiff2 = 0;
         }
         for (int i = 0; i < numDiff2; i++){
@@ -368,7 +370,7 @@ void testApp::update(){
             numDiff3 = newNum3 - oldNum3;
         }
         
-        if (numDiff3>400) {
+        if ((numDiff3>400)||(numDiff3<0)) {
             numDiff3 = 0;
         }
         for (int i = 0; i < numDiff3; i++){
@@ -400,7 +402,7 @@ void testApp::update(){
             numDiff4 = newNum4 - oldNum4;
         }
         
-        if (numDiff4>400) {
+        if ((numDiff4>400)||(numDiff4<0)) {
             numDiff4 = 0;
         }
         for (int i = 0; i < numDiff4; i++){
@@ -422,7 +424,7 @@ void testApp::update(){
             
             
             myParticles[i].cohesion.strength = 0.25;
-            myParticles[i].alignment.strength = scaledVol*2;
+            myParticles[i].alignment.strength = scaledVol;
             myParticles[i].seperation.strength = 0.015;
             
             myParticles[i].damping =  0.06f;
@@ -610,24 +612,18 @@ void testApp::update(){
         time_r = ofMap(getHour.currentHour, 7, 13, 153, 249);
         time_g = ofMap(getHour.currentHour, 7, 13, 255, 226);
         time_b = ofMap(getHour.currentHour, 7, 13, 255, 0);
-        
-        //cout << time_r << endl;
     }
     
     else if ((getHour.currentHour>12)&&(getHour.currentHour<19)) {
         time_r = ofMap(getHour.currentHour, 12, 19, 249, 255);
         time_g = ofMap(getHour.currentHour, 12, 19, 226, 156);
         time_b = ofMap(getHour.currentHour, 12, 19, 0, 5);
-        
-        //cout << time_r << endl;
     }
     
     else {
         time_r = 53;
         time_g = 114;
         time_b = 185;
-        
-        //cout << time_r << endl;
     }
 }
 
@@ -637,29 +633,31 @@ void testApp::draw(){
 	ofEnableAlphaBlending();
 	ofSetColor(time_r, time_g, time_b, 200);
 	sky.draw(0, 0, 1680, 1050);
+   
 
     
 	for (int i = 0; i < myParticles.size(); i++){
         ofSetColor(0, 0, 0);
-        ofDrawBitmapString("#WhatIMissMost", myParticles[0].pos.x+10, myParticles[0].pos.y+10);
+        //ofDrawBitmapString("#WhatIMissMost", myParticles[0].pos.x+10, myParticles[0].pos.y+10);
+        Archer.drawString("#WhatIMissMost", myParticles[0].pos.x+30, myParticles[0].pos.y+30);
         myParticles[i].drawBird();
     }
     
     for (int i=0; i < myParticles2.size(); i++) {
         ofSetColor(250, 0, 117);
-        ofDrawBitmapString("#10beautifulpeopleifollow", myParticles2[0].pos.x+10, myParticles2[0].pos.y+10);
+        Archer.drawString("#10beautifulpeopleifollow", myParticles2[0].pos.x+30, myParticles2[0].pos.y+30);
         myParticles2[i].drawBird();
     }
 	
     for (int i=0; i < myParticles3.size(); i++) {
         ofSetColor(255, 242, 0);
-        ofDrawBitmapString("#SomethingILearnedLongAgo", myParticles3[0].pos.x+10, myParticles3[0].pos.y+10);
+        Archer.drawString("#SomethingILearnedLongAgo", myParticles3[0].pos.x+10, myParticles3[0].pos.y+10);
         myParticles3[i].drawBird();
     }
     
     for (int i=0; i < myParticles4.size(); i++) {
         ofSetColor(255, 255, 255);
-        ofDrawBitmapString("#Patricia Heaton", myParticles4[0].pos.x+10, myParticles4[0].pos.y+10);
+        Archer.drawString("#Patricia Heaton", myParticles4[0].pos.x+10, myParticles4[0].pos.y+10);
         myParticles4[i].drawBird();
     }
     

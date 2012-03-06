@@ -39,7 +39,7 @@ class testApp : public ofSimpleApp{
         vector <float> volHistory;
         string typeStr;
 	
-        ofTrueTypeFont	verdana;
+        ofTrueTypeFont	Archer;
         ofxJSONElement result1;
         ofxJSONElement result2;
         ofxJSONElement result3;
