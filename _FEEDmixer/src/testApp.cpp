@@ -65,8 +65,7 @@ void testApp::update(){
             threeOn = false;
             fourOn = false;
             //sliderOn = false;
-        }
-        
+        } 
         if (m.getAddress() == "/controller1/slider1"){
             sliderOn = true;
             stringSize = m.getArgAsInt32( 0 );
@@ -82,8 +81,10 @@ void testApp::update(){
             threeOn = true;
 		}else if (m.getAddress() == "/controller2/button4"){
             fourOn = true;
-		}else if (m.getAddress() == "/controller2/slider1"){
+		}
+        if (m.getAddress() == "/controller2/slider1"){
             sliderOn = true;
+            stringSize = m.getArgAsInt32( 0 );
         }
         
         //controller3
@@ -98,8 +99,9 @@ void testApp::update(){
         else if (m.getAddress() == "/controller3/button4"){
             fourOn = true;
 		}
-        else if (m.getAddress() == "/controller3/slider1"){
+        if (m.getAddress() == "/controller3/slider1"){
             sliderOn = true;
+            stringSize = m.getArgAsInt32( 0 );
 		}
         
         //controller4
@@ -114,12 +116,11 @@ void testApp::update(){
         else if (m.getAddress() == "/controller4/button4"){
             fourOn = true;
 		}
-        else if (m.getAddress() == "/controller4/slider1"){
-            sliderOn = true;
-		}
         
-        if(m.getArgAsFloat(0)){
-        }
+        if (m.getAddress() == "/controller4/slider1"){
+            sliderOn = true;
+            stringSize = m.getArgAsInt32( 0 );
+		}
         
 
 	}
