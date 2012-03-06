@@ -59,16 +59,19 @@ void testApp::update(){
             threeOn = true;
 		}else if (m.getAddress() == "/controller1/button4"){
             fourOn = true;
-		}else if (m.getAddress() == "/controller1/slider1"){
-            sliderOn = true;
-            stringSize = m.getArgAsInt32( 1 );
 		}else {
             oneOn = false;
             twoOn = false;
             threeOn = false;
             fourOn = false;
-            sliderOn = false;
+            //sliderOn = false;
         }
+        
+        if (m.getAddress() == "/controller1/slider1"){
+            sliderOn = true;
+            stringSize = m.getArgAsInt32( 0 );
+            //cout << stringSize << endl;
+		}
         
         //controller2
 		if ( m.getAddress() == "/controller2/button1" ){
@@ -123,7 +126,7 @@ void testApp::update(){
     
     if (ofGetFrameNum()%1800 == 0) {
         //Twitter
-        string url = "http://tweetriver.com/EdibleCircuits/feedmixer.json?limit=16";
+        string url = "http://tweetriver.com/EdibleCircuits/feedmixer.json?limit=5";
         // Now parse the JSON
         bool parsingSuccessful = twitter.open(url);
         if ( parsingSuccessful ){
@@ -229,15 +232,29 @@ void testApp::draw(){
     }else if (sliderOn == true){
         ofSetColor(0, 0, 0);
         string feed = "#FEED";
+        float mappedSize = ofMap(stringSize, 0, 127, 1, 3);
         
+        float feedWidth = font.stringWidth(feed)/2;
+        float feedHeight = font.stringHeight(feed)/2;
+        
+        float screenWidth = ofGetWidth()/2;
+        float screenHeight = ofGetHeight()/2;
+        
+        float x = screenWidth-feedWidth;
+        float y = screenHeight-feedHeight;
+        
+        ofSetRectMode(OF_RECTMODE_CENTER);
         ofPushMatrix();
-        ofScale(stringSize, stringSize);
-        float feedWidth = font.stringWidth(feed);
-        float feedHeight = font.stringHeight(feed);
-        
-        font.drawString(feed, ofGetWidth()/2-feedWidth/2, ofGetHeight()/2-feedHeight/2);
+            
+            
+            ofTranslate(screenWidth,screenHeight);
+            ofScale(mappedSize, mappedSize);
+            font.drawString(feed, 0-feedWidth, 0);
         
         ofPopMatrix();
+        ofSetRectMode(OF_RECTMODE_CORNER);
+        
+        
         ofSetColor(255, 255, 255);
     }
 
