@@ -16,7 +16,7 @@ void testApp::setup(){
     // Loading Fonts and Images
     
     sky.loadImage("sunset_bw_1920.jpg");
-    Archer.loadFont("Oswald-Regular.ttf", 14);
+    Archer.loadFont("Oswald-light.ttf", 14);
     Archer.setLineHeight(22);
 
 
@@ -25,22 +25,25 @@ void testApp::setup(){
     //***************>>>>>>>>TWITTER>>>>>>>>***************//
         
     // Twitter API: http://dev.twitter.com/doc/get/trends/current
-    
+    //twitterURL = "https://api.twitter.com/1/trends/2357536.json";
     url1 = "http://tweetriver.com/EdibleCircuits/sxswtrend1/meta.json";
     url2 = "http://tweetriver.com/EdibleCircuits/sxswtrend2/meta.json";
     url3 = "http://tweetriver.com/EdibleCircuits/sxswtrend3/meta.json";
     url4 = "http://tweetriver.com/EdibleCircuits/sxswtrend4/meta.json";
     url5 = "http://tweetriver.com/EdibleCircuits/sxswtrend5/meta.json";
-
+    
+    //https://dev.twitter.com/docs/api/1/get/trends/available
 	
     // Now parse the JSON
+
+    
     
     //TREND 1------------------------------/////////////////////
     bool parsing1Successful = result1.open(url1);
     if ( parsing1Successful ){
-        //cout << result.getRawString() << endl;
+        //cout << result1.getRawString() << endl;
     }else{
-        cout  << "Failed to parse JSON" << endl;
+        cout  << "Failed to parse JSON 1" << endl;
     }
     ofxJSONElement trend1 = result1["count"]["approved"];
     oldNum1 = trend1.asInt();
@@ -53,7 +56,7 @@ void testApp::setup(){
     if ( parsing2Successful ){
     //cout << result.getRawString() << endl;
     }else{
-        cout  << "Failed to parse JSON" << endl;
+        cout  << "Failed to parse JSON 2" << endl;
     }
     ofxJSONElement trend2 = result2["count"]["approved"];
     oldNum2 = trend2.asInt();
@@ -65,7 +68,7 @@ void testApp::setup(){
     if ( parsing3Successful ){
         //cout << result.getRawString() << endl;
     }else{
-        cout  << "Failed to parse JSON" << endl;
+        cout  << "Failed to parse JSON 3" << endl;
     }
     ofxJSONElement trend3 = result3["count"]["approved"];
     oldNum3 = trend3.asInt();
@@ -77,7 +80,7 @@ void testApp::setup(){
     if ( parsing4Successful ){
         //cout << result.getRawString() << endl;
     }else{
-        cout  << "Failed to parse JSON" << endl;
+        cout  << "Failed to parse JSON 4" << endl;
     }
     ofxJSONElement trend4 = result4["count"]["approved"];
     oldNum4 = trend4.asInt();
@@ -280,7 +283,30 @@ void testApp::update(){
     
 
     
-    if(ofGetFrameNum()%2000 == 0){
+    if(ofGetFrameNum()%4000 == 0){
+        //TOP TRENDS------------------------------/////////////////////
+        string url = "http://api.twitter.com/1/trends/2357536.json";
+        
+        
+        // Now parse the JSON
+        bool parsingSuccessful = topTrends.open(url);
+        if ( parsingSuccessful ){
+            //cout << topTrends.getRawString() << endl;
+            
+        }else{
+            cout  << "Failed to parse JSON from Twitter" << endl;
+        }
+
+        int n=0;
+        ofxJSONElement trends = topTrends[n]["trends"];
+        trend1 = trends[n]["name"].asString();
+        trend2 = trends[n+1]["name"].asString();
+        trend3 = trends[n+2]["name"].asString();
+        trend4 = trends[n+3]["name"].asString();
+        
+        cout << trend3 << endl;
+        
+        
         // Now parse the JSON
         bool parsing1Successful = result1.open(url1);
         if ( parsing1Successful ){
@@ -639,25 +665,25 @@ void testApp::draw(){
 	for (int i = 0; i < myParticles.size(); i++){
         ofSetColor(0, 0, 0);
         //ofDrawBitmapString("#WhatIMissMost", myParticles[0].pos.x+10, myParticles[0].pos.y+10);
-        Archer.drawString("#WhatIMissMost", myParticles[0].pos.x+30, myParticles[0].pos.y+30);
+        Archer.drawString(trend1, myParticles[0].pos.x+30, myParticles[0].pos.y+30);
         myParticles[i].drawBird();
     }
     
     for (int i=0; i < myParticles2.size(); i++) {
         ofSetColor(250, 0, 117);
-        Archer.drawString("#10beautifulpeopleifollow", myParticles2[0].pos.x+30, myParticles2[0].pos.y+30);
+        Archer.drawString(trend2, myParticles2[0].pos.x+30, myParticles2[0].pos.y+30);
         myParticles2[i].drawBird();
     }
 	
     for (int i=0; i < myParticles3.size(); i++) {
         ofSetColor(255, 242, 0);
-        Archer.drawString("#SomethingILearnedLongAgo", myParticles3[0].pos.x+10, myParticles3[0].pos.y+10);
+        Archer.drawString(trend3, myParticles3[0].pos.x+10, myParticles3[0].pos.y+10);
         myParticles3[i].drawBird();
     }
     
     for (int i=0; i < myParticles4.size(); i++) {
         ofSetColor(255, 255, 255);
-        Archer.drawString("#Patricia Heaton", myParticles4[0].pos.x+10, myParticles4[0].pos.y+10);
+        Archer.drawString(trend4, myParticles4[0].pos.x+10, myParticles4[0].pos.y+10);
         myParticles4[i].drawBird();
     }
     

@@ -92,8 +92,10 @@ void testApp::keyReleased(int key){
             break;
         case 's':
             cout <<"start saving\n" << endl;
-            gifEncoder.save("gifs/test"+ofGetTimestampString()+".gif");
-			saveImages();
+            gifEncoder.save("gifs/"+ofGetTimestampString()+".gif");
+            saveImages();
+            gifEncoder.reset();
+            
             break;
         default:
             break;
@@ -127,7 +129,7 @@ void testApp::saveImages(){
 	for (int i = 0; i < imgs.size(); i++){
 		imgs[i]->saveImage(ofToString(recordingCount) + "/frame_" + ofToString(i) + ".png");
 		delete imgs[i];
-	}
+        	}
 		
 	imgs.clear();
 	dir.reset();
