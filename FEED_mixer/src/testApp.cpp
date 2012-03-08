@@ -224,7 +224,7 @@ void testApp::draw(){
         ofSetColor(255, 255, 255);
     }else if (sliderOn == true){
         ofSetColor(0, 0, 0);
-        string feed = "#FEED";
+        string feed = "#FEEDmixer";
         float mappedSize = ofMap(stringSize, 0, 127, 1, 5);
         
         float feedWidth = font.stringWidth(feed)/2;
