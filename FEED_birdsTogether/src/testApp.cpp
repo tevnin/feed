@@ -16,7 +16,7 @@ void testApp::setup(){
     // Loading Fonts and Images
     
     sky.loadImage("sunset_bw_1920.jpg");
-    Archer.loadFont("ArcheBoo", 14);
+    Archer.loadFont("Oswald-Regular.ttf", 14);
     Archer.setLineHeight(22);
 
 
